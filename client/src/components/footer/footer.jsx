@@ -13,7 +13,7 @@ import Link from "next/link";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 const Footer = () => {
-  const [age] = useState("");
+  const [age] = useState(" ");
   return (
     <div className="md:w-full flex flex-col h-[25rem]  w-[100vw] justify-center ml-2">
       <div className={styles.ftop}>
