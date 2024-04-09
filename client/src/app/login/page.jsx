@@ -31,21 +31,23 @@ const Login = () => {
       const data = await loginfunction({ email: email, password: password });
       if (data.status == 200) {
         toast.success("Login Successfull");
-        const{id:id,email:email,name:name} = data.data[0];
+        const{id:id,email:email,name:name,is_admin:is_admin,phone:phone} = data.data;
           dispatch({
             type: reducerCases.SET_USER_INFO,
             userInfo: {
               id,
               email,
               name,
+              is_admin,
+              phone
             },
           });
         setTimeout(() => {
           router.push('/');
-        }, 2000);
+        }, 1000);
       } else {
         setSpin(false);
-        toast.error(data.response?.data);
+        toast.error(data.response?.data.msg);
       }
     }
   };

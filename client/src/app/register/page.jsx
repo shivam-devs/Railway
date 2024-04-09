@@ -13,6 +13,7 @@ import { reducerCases } from "@/context/constants";
 const Rgister = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [spin, setSpin] = useState(false);
   const [{userInfo,newUser}, dispatch] = useStateProvider();
@@ -21,7 +22,9 @@ const Rgister = () => {
     e.preventDefault();
     if (name === "") {
       toast.error("Enter your Name");
-    } else if (email === "") {
+    }else if (phone === "") {
+      toast.error("Enter your phone number");
+    }else if (email === "") {
       toast.error("Enter your Email");
     } else if (!email.includes("@gmail.com")) {
       toast.error("Enter Valid Email");
@@ -33,12 +36,14 @@ const Rgister = () => {
       setSpin(true);
       const data = await resisterfunction({
         name: name,
+        phone:phone,
         email: email,
         password: password,
+        is_admin:false
       });
       if (data.status == 201) {
         toast.success("Registration Successfull");
-        const{id:id,email:email,name:name} = data.data;
+        const{id:id,email:email,name:name,phone:phone,is_admin:is_admin} = data.data;
         dispatch({
           type: reducerCases.SET_NEW_USER,
           newUser: true,
@@ -47,8 +52,10 @@ const Rgister = () => {
           type: reducerCases.SET_USER_INFO,
           userInfo: {
             id,
+            phone,
             email,
             name,
+            is_admin
           },
         });
         setTimeout(() => {
@@ -65,14 +72,14 @@ const Rgister = () => {
       <section>
         <div className="flex relative items-center justify-between h-[85vh] w-full py-2">
           <div
-            className={`${Styles.formleft} dark:bg-gray-800 dark:border-gray-700`}
+            className={`${Styles.formleft} dark:bg-gray-800 dark:border-gray-700 relative`}
           >
             <div className={Styles.glow} />
-            <h1 className=" ml-2 text-sm font-bold leading-tight tracking-tight md:text-2xl text-blue-500">
+            <h1 className="ml-2 text-sm font-bold mt-2 leading-tight tracking-tight md:text-2xl text-blue-500">
               Book Ticket
             </h1>
-            <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-              <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <div className="w-full bg-white rounded-lg shadow relative dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+              <div className="p-3 space-y-1 md:space-y-0 md:mt-0 md:h-[31.5rem]">
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                   Create new account
                 </h1>
@@ -94,6 +101,23 @@ const Rgister = () => {
                       onChange={(e) => setName(e.target.value)}
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="your name"
+                      required=""
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Your phone
+                    </label>
+                    <input
+                      type="number"
+                      name="phone"
+                      id="phone"
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="+91 5466753546"
                       required=""
                     />
                   </div>

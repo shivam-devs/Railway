@@ -1,43 +1,73 @@
-.ftop{
-flex: 1;
-margin-bottom: 0.5rem;
-display: flex;
-justify-content: center;
-gap: 2rem;
-color: #fff;
-align-items: center;
-background-image: linear-gradient(to right,#1d2184,#bd17ff);
-padding: 0.5rem 0;
+.ftop {
+  flex: 1;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  color: #fff;
+  align-items: center;
+  background-image: linear-gradient(to right, #1d2184, #bd17ff);
+  padding: 0.5rem 0;
 }
-.fmid{
-flex: 6;
-background-color: rgb(33, 18, 167);
-display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr;
-gap:1rem;
+.fmid {
+  flex: 6;
+  background-color: rgb(33, 18, 167);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
 }
-.fbottom{
-flex: 2;
-background-color: rgb(255, 255, 255);
-display: flex;
-justify-content: space-around;
-align-items: center;
-text-align: right;
+.fbottom {
+  flex: 2;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: right;
 }
-.social{
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0rem 0.2rem 1rem black;
-    transition: 0.2s;
+.social {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0rem 0.2rem 1rem black;
+  transition: 0.2s;
 }
-.social:hover{
-    transform: scale(1.2);
+.social:hover {
+  transform: scale(1.2);
 }
-.footertext{
-    color: black;
-    font-size: 0.8rem;
+.footertext {
+  color: black;
+  font-size: 0.8rem;
+}
+@media only screen and (max-width: 768px) {
+  .ftop {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 98vw;
+    min-height: 5rem;
+    overflow: hidden;
+    margin-left: -0.7rem;
+  }
+  .social {
+    height: 2rem;
+    width: 2rem;
+    margin-left: -0.2rem;
+  }
+  .mobo {
+    display: none;
+  }
+  .fmid {
+    display: none;
+  }
+  .fbottom {
+    margin-left: -0.7rem;
+    flex-direction: column;
+    width: 98vw;
+    overflow: hidden;
+  }
+  .footertext {
+    font-weight: 700;
+  }
 }

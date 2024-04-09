@@ -15,9 +15,9 @@ import Select from "@mui/material/Select";
 const Footer = () => {
   const [age] = useState("");
   return (
-    <div className="w-full flex flex-col h-[25rem] justify-center ml-2">
+    <div className="md:w-full flex flex-col h-[25rem]  w-[100vw] justify-center ml-2">
       <div className={styles.ftop}>
-        <span className="ml-[10rem]">
+        <span className="md:ml-[10rem]">
           Get Connected with us on social networks
         </span>
         <div className="flex w-[50%] gap-3">
@@ -51,12 +51,12 @@ const Footer = () => {
               <PinterestIcon className="text-white" />
             </Link>
           </div>
-          <div className={`${styles.social} bg-gray-700`}>
+          <div className={`${styles.social} ${styles.mobo} bg-gray-700`}>
             <Link href="">
               <Image src="/tumblr.ico" width={20} height={20} alt="kooapp" />
             </Link>
           </div>
-          <div className={`${styles.social} bg-white`}>
+          <div className={`${styles.social} ${styles.mobo} bg-white`}>
             <Link href="">
               <Image src="/koo-icon.webp" width={30} height={30} alt="tumblr" />
             </Link>
