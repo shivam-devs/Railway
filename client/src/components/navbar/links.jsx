@@ -6,7 +6,7 @@ import { useStateProvider } from "@/context/StateContext";
 import { reducerCases } from "@/context/constants";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { logoutfunction } from "@/utils/Apis";
-const Links = ({show,setShow}) =>{
+const Links = ({show,setShow,width}) =>{
     const pathName = usePathname();
     const [{ userInfo },dispatch] = useStateProvider();
     const router = useRouter();
@@ -18,15 +18,20 @@ const Links = ({show,setShow}) =>{
           });
         router.push('/');
     }
+    const handelclick = () =>{
+        if(width<768){
+            setShow(!show)
+        }
+    }
     return(
         <div className={`flex-col md:text-md text-xs p-2 glass items-center md:flex-row ${styles.link}`}>
-            <Link onClick={()=>setShow(!show)} href="/" className={pathName==="/"? styles.active:"random"}>Home</Link>
-            {userInfo?.is_admin && <Link onClick={()=>setShow(!show)} href="http://localhost:8000/admin/" className="text-center" target="_blank">Admin Pannel</Link>}
-            <Link onClick={()=>setShow(!show)} href="/contact" className={`text-center ${pathName==="/contact"? styles.active:"random"}`}>Contact Us</Link>
+            <Link onClick={handelclick} href="/" className={pathName==="/"? styles.active:"random"}>Home</Link>
+            {userInfo?.is_admin && <Link onClick={handelclick} href="https://railway-sa53.onrender.com/admin/" className="text-center" target="_blank">Admin Pannel</Link>}
+            <Link onClick={handelclick} href="/contact" className={`text-center ${pathName==="/contact"? styles.active:"random"}`}>Contact Us</Link>
             {userInfo?.id == null?<>
-            <Link onClick={()=>setShow(!show)} href="/login" className={`text-center${pathName==="/login" ? styles.active:"random"}`}>Login</Link>
-            <Link onClick={()=>setShow(!show)} href="/register" className={pathName==="/register" ? styles.active:"random"}>Register</Link>
-            </>:<><Link onClick={()=>setShow(!show)} href="/profile"><AccountCircleIcon /></Link><button className={styles.btn} onClick={handelLogout}>Logout</button></>}
+            <Link onClick={handelclick} href="/login" className={`text-center${pathName==="/login" ? styles.active:"random"}`}>Login</Link>
+            <Link onClick={handelclick} href="/register" className={pathName==="/register" ? styles.active:"random"}>Register</Link>
+            </>:<><Link onClick={handelclick} href="/profile"><AccountCircleIcon /></Link><button className={styles.btn} onClick={handelLogout}>Logout</button></>}
         </div>
     )
 }

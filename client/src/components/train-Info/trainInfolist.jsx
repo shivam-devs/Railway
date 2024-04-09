@@ -8,10 +8,9 @@ const TrainInfolist = ({ train }) => {
   const endTime = new Date(train?.reachDate);
   const handelClick = async (train_id, user_id, amount) => {
     try{
-      const { data: { order } } = await axios.post("http://localhost:8000/api/payment/checkout", {
+      const { data: { order } } = await axios.post("https://railway-sa53.onrender.com/api/payment/checkout", {
          train_id, user_id, amount
         })
-    console.log(order)
     const options = {
       key:'rzp_test_Ll3DMUxqVBUyp8',
       amount: amount,
@@ -20,7 +19,7 @@ const TrainInfolist = ({ train }) => {
       description: "VSSUT",
       image: "https://avatars.githubusercontent.com/u/25058652?v=4",
       order_id: order.id,
-      callback_url: "http://localhost:8000/api/payment/paymentverification",
+      callback_url: "https://railway-sa53.onrender.com/api/payment/paymentverification",
       prefill: {
           name: "Shivam",
           email: "shivam@gmail.com",
@@ -55,7 +54,7 @@ const TrainInfolist = ({ train }) => {
       </div>
       <div className="flex justify-between w-full">
         <span className="font-semibold text-xs md:text-lg w-[20%]">{startTime.toLocaleTimeString()}</span>
-        <span className="font-semibold text-xs md:text-lg w-auto">{`-------- ${endTime.getHours()-startTime.getHours()}:${endTime.getMinutes()-startTime.getMinutes()} -------- `}</span>
+        <span className="font-semibold text-xs md:text-lg w-auto">{`-------- ${endTime.getHours()>startTime.getHours()?endTime.getHours()-startTime.getHours():startTime.getHours()-endTime.getHours()}:${endTime.getMinutes()>startTime.getMinutes()?endTime.getMinutes()-startTime.getMinutes():startTime.getMinutes()-endTime.getMinutes()} -------- `}</span>
         <span className="font-semibold text-xs md:text-lg w-[20%] text-right">{endTime.toLocaleTimeString()}</span>
       </div>
       <span className="text-lg font-semibold">₹{train.price}</span>

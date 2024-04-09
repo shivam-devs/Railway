@@ -106,7 +106,7 @@ const Navbar = () => {
             />
           </Link>
           <div className="flex gap-8 items-center">
-            <Links show={show} setShow={setShow} />
+            <Links show={show} setShow={setShow} width={width}/>
             {hydrated && (
               <div className="font-bold hidden md:block glass text-blue-500 hover:rounded hover:border-2 hover:border-white p-2">
                 {date.toLocaleDateString()}

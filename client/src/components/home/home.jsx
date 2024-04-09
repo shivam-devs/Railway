@@ -64,7 +64,6 @@ const Main = () => {
   const [spin,setSpin] = useState(false);
   const handelClick = async() =>{
     const data = await searchTrain({from:from.toUpperCase(),to:to.toUpperCase(),dateinp:dateinp});
-    console.log(dateinp);
     setSpin(true);
     if(data.status === 200){
       const trains = data.data;

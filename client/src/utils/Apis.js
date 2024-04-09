@@ -1,5 +1,5 @@
 import { commonrequest } from "./ApiCall";
-const HOST = "http://localhost:8000/api";
+const HOST = "https://railway-sa53.onrender.com/api";
 export const resisterfunction = async (data)=>{
     return await commonrequest("POST",`${HOST}/user/`,data)
 }
