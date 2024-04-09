@@ -84,7 +84,7 @@ export const paymentVerification = async (req, res) => {
       await order_available.updateOne({ payment: true }).catch((err) => {
         console.log(err);
       });
-      res.redirect(`http://localhost:3000/`);
+      res.redirect(`https://railway-vssut.vercel.app/`);
     } else {
       res.status(400).json({
         success: false,
