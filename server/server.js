@@ -16,7 +16,7 @@ dotenv.config();
 //middlewares
 app.use(
   cors({
-    origin: ["https://railway-vssut.vercel.app","http://localhost:3000/"]
+    origin: ["https://railway-vssut.vercel.app","http://localhost:3000/"],
     methods: ["GET", "POST", "DELETE"],
     credentials: true,
   })
